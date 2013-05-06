@@ -70,6 +70,8 @@ func addHandler(repo, branch, shell string) {
 		}
 		if data.Repository.Name == repo && data.Ref == branch {
 			executeShell(shell)
+		} else {
+			log.Printf("Failed to match repository (%s) with %s OR branch (%s) with %s", repo, data.Repository.Name, branch, data.Ref)
 		}
 	})
 }
