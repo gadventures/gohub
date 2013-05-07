@@ -61,7 +61,7 @@ func startWebserver() {
 func addHandler(repo, branch, shell string) {
 	uri := branch
 	branch = "refs/heads/" + branch
-	http.HandleFunc("/"+repo+"_"+uri, func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/" + repo + "_" + uri + "/", func(w http.ResponseWriter, r *http.Request) {
 		decoder := json.NewDecoder(r.Body)
 		var data GithubJson
 		err := decoder.Decode(&data)
