@@ -62,9 +62,9 @@ func addHandler(repo, branch, shell string) {
 	uri := branch
 	branch = "refs/heads/" + branch
 	http.HandleFunc("/" + repo + "_" + uri + "/", func(w http.ResponseWriter, r *http.Request) {
-		decoder := json.NewDecoder(r.Body)
+		payload := r.FormValue("payload")
 		var data GithubJson
-		err := decoder.Decode(&data)
+		err := json.Unmarshal([]byte(payload), &data)
 		if err != nil {
 			log.Println(err)
 		}

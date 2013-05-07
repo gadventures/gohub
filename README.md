@@ -3,7 +3,9 @@ gohub
 
 ## What is gohub?
 
-gohub is a little webserver written in go. He waits for webhook calls by github to run little shell commands.
+gohub is a little webserver written in go. He waits for webhook calls by github to run little shell commands. 
+
+[Read the github post-receive-hooks guide](https://help.github.com/articles/post-receive-hooks)
 
 ## What is it good for?
 
@@ -29,6 +31,11 @@ Now start the server with
     go run main.go --port 6578
 
 and add a git-webhook for your.domain.com:6578/repo_master. Everytime you push to master, your script gets executed.
+
+## Testing with curl
+
+    curl -v -d 'payload={"repository": {"name": "repo" }, "ref": "refs/heads/branch" }' \
+         http://localhost:6578/repo_branch
 
 ## What about safety?
 
